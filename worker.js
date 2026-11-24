@@ -8,7 +8,7 @@ export default {async fetch(r,e){
  if(r.method==="OPTIONS")return new Response(null,{status:204,headers:H});
  const u=new URL(r.url),p=u.pathname;
  try{
- if(p==="/admin")return await serveAsset("/admin.html",e);
+ if(p==="/admin"){if(e.ASSETS){const a=await e.ASSETS.fetch(new Request(new URL("/admin.html",r.url)));if(a.status!==404)return a;}return await serveAsset("/admin.html",e);}
  if(p==="/")return await serveAsset("/index.html",e);
  if(!p.startsWith("/api/"))return await serveAsset(p,e);
  if(p==="/api/health"){const x=await e.DB.prepare("SELECT COUNT(*) n FROM foods").first();return J({ok:true,database:"connected",foods:x.n});}
