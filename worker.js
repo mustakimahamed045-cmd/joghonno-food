@@ -2,7 +2,7 @@ const H={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"Conte
 const J=(x,s=200)=>new Response(JSON.stringify(x),{status:s,headers:{...H,"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
 const M=x=>String(x||"").replace(/\D/g,"").replace(/^88/,"");
 const S=async x=>Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(x)))).map(v=>v.toString(16).padStart(2,"0")).join("");
-async function serveAsset(path,e){const a=await e.DB.prepare("SELECT content,content_type FROM site_assets WHERE path=?").bind(path).first();if(!a)return new Response("Not found",{status:404});const bytes=Uint8Array.from(atob(a.content),c=>c.charCodeAt(0));return new Response(bytes,{headers:{"Content-Type":a.content_type,"Cache-Control":"public, max-age=300"}});}
+async function serveAsset(path,e){const q=await e.DB.prepare("SELECT content,content_type FROM site_asset_chunks WHERE path=? ORDER BY chunk_no").bind(path).all();if(!q.results.length)return new Response("Not found",{status:404});const b64=q.results.map(x=>x.content).join(""),bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));return new Response(bytes,{headers:{"Content-Type":q.results[0].content_type,"Cache-Control":"public, max-age=300"}});}
 export default {async fetch(r,e){
  if(r.method==="OPTIONS")return new Response(null,{status:204,headers:H});
  const u=new URL(r.url),p=u.pathname;
