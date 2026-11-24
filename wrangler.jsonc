@@ -6,13 +6,28 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*", "/admin"]
+    "run_worker_first": [
+      "/api/*",
+      "/admin"
+    ]
   },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "joghonno-food-db",
-      "database_id": "32dafbbf-3d93-4600-9ef8-2379b370c764"
+      "database_name": "joghonno-food-beta-db",
+      "database_id": "65ab5daa-c852-49f0-9931-1c1d7a91416f"
     }
-  ]
+  ],
+  "env": {
+    "production": {
+      "name": "round-flower-3c4a",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "joghonno-food-db",
+          "database_id": "32dafbbf-3d93-4600-9ef8-2379b370c764"
+        }
+      ]
+    }
+  }
 }
