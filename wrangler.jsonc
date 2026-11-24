@@ -1,0 +1,9 @@
+
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "round-flower-3f4a",
+  "compatibility_date": "2026-11-24",
+  "assets": {
+    "directory": "."
+  }
+}
