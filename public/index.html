@@ -5,7 +5,63 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>JOGHONNO FOOD</title>
 <style>
-:root{--r:#9e1b1b;--ink:#261d1a;--muted:#786e68}*{box-sizing:border-box}body{margin:0;background:#fffaf5;color:var(--ink);font-family:system-ui,"Noto Sans Bengali",sans-serif}header{background:linear-gradient(130deg,#741010,#c33b25);color:white;padding:20px 14px 28px}.wrap{max-width:1050px;margin:auto;padding:0 14px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-size:22px;font-weight:900}.tag{font-size:13px}.cartpill{border:0;border-radius:25px;padding:10px 14px;color:var(--r);font-weight:bold}.hero{padding:25px 0 5px}.hero h1{margin:0 0 6px;font-size:clamp(25px,6vw,40px)}.notice{margin:14px auto;background:#fff0d9;color:#70400b;padding:11px;border-radius:10px;font-size:14px}h2{font-size:21px;margin:23px 0 12px}.cats{display:flex;gap:8px;overflow:auto;padding:2px 0 12px}.cat{white-space:nowrap;border:1px solid #ead9ce;background:white;border-radius:22px;padding:9px 14px}.cat.active,.primary,.add{background:var(--r);color:white;border:0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:13px}.food,.panel{background:white;border:1px solid #efdfd4;border-radius:15px;overflow:hidden}.food img{width:100%;height:150px;object-fit:cover;background:#eee}.foodbody{padding:12px}.food h3{font-size:16px;margin:0 0 6px}.desc{font-size:13px;color:var(--muted);min-height:34px}.price{font-weight:800;margin:10px 0}.old{color:#999;text-decoration:line-through;font-size:13px;margin-left:6px}.add,.primary{padding:11px 13px;border-radius:9px;font-weight:750;cursor:pointer}.add{width:100%}.add:disabled{background:#aaa}.panel{padding:15px;margin:20px 0}.empty{text-align:center;color:var(--muted);padding:17px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding:10px 0}.qty{display:flex;align-items:center;gap:8px}.qty button{border:0;border-radius:7px;width:29px;height:29px;font-size:18px}.totals p{display:flex;justify-content:space-between}.total{font-size:19px;font-weight:900;border-top:1px solid #eee;padding-top:10px}.field{width:100%;padding:12px;border:1px solid #ddcec4;border-radius:9px;font:inherit;margin:6px 0 12px;background:white}label{font-size:14px;font-weight:650}.status{display:none;padding:12px;border-radius:9px;margin:10px 0}.ok{display:block;background:#e8f7ee;color:#12653c}.err{display:block;background:#fff0ed;color:#a1261b}footer{text-align:center;color:#877b74;padding:25px;font-size:13px}@media(min-width:750px){.checkout{display:grid;grid-template-columns:1fr 1fr;gap:15px}}
+:root{--red:#9e1b1b;--red-dark:#681010;--red-soft:#fff0ec;--ink:#241b19;--muted:#796e68;--line:#efe2da;--cream:#fffaf6;--gold:#f2c66d;--shadow:0 12px 34px rgba(65,28,18,.08)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{margin:0;background:linear-gradient(180deg,#fffaf6 0,#fff 48%,#fffaf6 100%);color:var(--ink);font-family:system-ui,"Noto Sans Bengali",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+button:active{transform:scale(.98)}
+.wrap{max-width:1120px;margin:auto;padding:0 18px}
+header{position:relative;overflow:hidden;background:radial-gradient(circle at 88% 15%,rgba(255,210,133,.18),transparent 27%),linear-gradient(132deg,#5d0b0b 0%,#8d1717 48%,#c33b25 100%);color:white;padding:20px 0 42px;border-radius:0 0 30px 30px;box-shadow:0 14px 35px rgba(92,15,15,.18)}
+header:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-90px;bottom:-170px;box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.025);pointer-events:none}
+header .wrap{position:relative;z-index:1}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-size:clamp(19px,4vw,25px);font-weight:950;letter-spacing:.4px}
+.tag{font-size:12px;color:#ffe6d5;margin-top:4px}
+.cartpill{border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:11px 16px;background:#fff;color:var(--red-dark);font-weight:850;box-shadow:0 7px 18px rgba(40,0,0,.16);white-space:nowrap}
+.hero{padding:34px 0 4px;max-width:650px}
+.hero h1{margin:0 0 9px;font-size:clamp(29px,7vw,48px);line-height:1.2;font-weight:950;letter-spacing:-.7px}
+.hero>div{color:#ffe8dc;font-size:15px;line-height:1.7}
+.notice{margin:18px 0;background:linear-gradient(100deg,#fff1d8,#fff8ed);color:#75410d;padding:13px 16px;border:1px solid #f3dfbc;border-radius:14px;font-size:14px;font-weight:650;box-shadow:0 5px 18px rgba(120,74,17,.05)}
+h2{font-size:21px;line-height:1.35;margin:25px 0 14px;font-weight:900;letter-spacing:-.2px}
+.cats{display:flex;gap:9px;overflow:auto;padding:3px 1px 15px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{white-space:nowrap;border:1px solid #eadbd2;background:#fff;border-radius:999px;padding:10px 16px;color:#5d514b;font-size:13px;font-weight:750;box-shadow:0 3px 10px rgba(50,20,10,.035)}
+.cat.active,.primary,.add{background:linear-gradient(135deg,#a51f1f,#7c1010);color:white;border:0}
+.cat.active{box-shadow:0 6px 15px rgba(125,16,16,.2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
+.food,.panel{background:#fff;border:1px solid rgba(230,214,204,.85);border-radius:19px;overflow:hidden;box-shadow:var(--shadow)}
+.food{transition:transform .2s ease,box-shadow .2s ease}
+.food:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(65,28,18,.12)}
+.food img{display:block;width:100%;height:clamp(132px,35vw,190px);object-fit:cover;background:#f1e9e4}
+.foodbody{padding:13px}
+.food h3{font-size:15px;line-height:1.4;margin:0 0 6px;font-weight:850;min-height:40px}
+.desc{font-size:12px;color:var(--muted);line-height:1.55;min-height:36px}
+.price{font-weight:900;font-size:17px;margin:11px 0;color:var(--red-dark)}
+.old{color:#9b918b;text-decoration:line-through;font-size:12px;margin-left:7px;font-weight:500}
+.add,.primary{padding:12px 14px;border-radius:12px;font-weight:850;box-shadow:0 6px 14px rgba(125,16,16,.14)}
+.add{width:100%;font-size:13px}
+.add:disabled{background:#aaa;box-shadow:none}
+.panel{padding:18px;margin:22px 0}
+.panel h2{margin-top:0}
+.empty{text-align:center;color:var(--muted);padding:20px 12px;font-size:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #f0e9e4;padding:13px 0}
+.qty{display:flex;align-items:center;gap:9px;font-weight:850}
+.qty button{border:1px solid #eadbd2;background:#fff6f2;color:var(--red);border-radius:9px;width:32px;height:32px;font-size:19px;font-weight:800}
+.totals{background:#fff9f5;border:1px solid #f0e2d9;border-radius:14px;padding:12px 14px;margin-top:14px}
+.totals p{display:flex;justify-content:space-between;gap:10px;margin:8px 0;font-size:14px}
+.total{font-size:19px!important;font-weight:950;border-top:1px solid #eadbd2;padding-top:12px;margin-top:12px!important;color:var(--red-dark)}
+.field{display:block;width:100%;padding:13px 14px;border:1px solid #e5d8d0;border-radius:12px;font:inherit;font-size:14px;margin:7px 0 15px;background:#fff;color:var(--ink);outline:none;transition:border .18s,box-shadow .18s}
+.field:focus{border-color:#b64a3e;box-shadow:0 0 0 4px rgba(158,27,27,.09)}
+label{font-size:13px;font-weight:800;color:#51433d}
+.status{display:none;padding:13px 14px;border-radius:12px;margin:12px 0;font-size:14px;line-height:1.6}
+.ok{display:block;background:#eaf7ee;color:#12653c;border:1px solid #ccebd6}
+.err{display:block;background:#fff0ed;color:#a1261b;border:1px solid #f5d0c9}
+footer{text-align:center;color:#877b74;padding:30px 15px;font-size:12px}
+@media(min-width:750px){.checkout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.grid{grid-template-columns:repeat(auto-fill,minmax(205px,1fr))}.panel{padding:23px}.foodbody{padding:15px}}
+@media(max-width:380px){.wrap{padding:0 13px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.foodbody{padding:10px}.food h3{font-size:14px}.add{padding:10px 7px;font-size:12px}.cat{padding:9px 13px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style></head><body>
 <header><div class="wrap"><div class="top"><div><div class="brand" id="brand">JOGHONNO FOOD</div><div class="tag" id="tagline">স্বাদে জঘন্য নয়, জঘন্য রকমের সুস্বাদু!</div></div><button class="cartpill" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">🛒 কার্ট (<span id="count">0</span>)</button></div><div class="hero"><h1>মজার খাবার, ঘরে বসেই!</h1><div>পছন্দের খাবার অর্ডার করুন সহজেই।</div></div></div></header>
 <main class="wrap"><div class="notice" id="notice">🔥 দ্রুত ও গরম গরম হোম ডেলিভারি চলছে!</div><h2>🍽️ আমাদের মেনু</h2><div class="cats" id="cats"></div><div class="grid" id="foods"><div class="empty">মেনু লোড হচ্ছে...</div></div>
