@@ -1,5 +1,9 @@
-const H={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods":"GET,POST,OPTIONS"};
-const J=(x,s=200)=>new Response(JSON.stringify(x),{status:s,headers:{...H,"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
+const H={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"Content-Type","Access-Control-Allow-Methods":"GET,POST,OPTIONS"};
+const COOKIE="jf_admin_session";
+const J=(x,s=200,extra={})=>new Response(JSON.stringify(x),{status:s,headers:{...H,...extra,"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
+const getCookie=(r,n)=>{const v=(r.headers.get("Cookie")||"").split(";").map(x=>x.trim()).find(x=>x.startsWith(n+"="));return v?v.slice(n.length+1):""};
+const sessionCookie=t=>COOKIE+"="+t+"; Max-Age=2592000; Path=/; HttpOnly; Secure; SameSite=Lax";
+const clearSessionCookie=()=>COOKIE+"=; Max-Age=0; Path=/; HttpOnly; Secure; SameSite=Lax";
 const M=x=>String(x||"").replace(/\D/g,"").replace(/^88/,"");
 const S=async x=>Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(x)))).map(v=>v.toString(16).padStart(2,"0")).join("");
 async function serveAsset(path,e){const q=await e.DB.prepare("SELECT content,content_type FROM site_asset_chunks WHERE path=? ORDER BY chunk_no").bind(path).all();if(!q.results.length)return new Response("Not found",{status:404});const b64=q.results.map(x=>x.content).join(""),bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));return new Response(bytes,{headers:{"Content-Type":q.results[0].content_type,"Cache-Control":"public, max-age=60"}});}
